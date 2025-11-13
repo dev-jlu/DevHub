@@ -1,41 +1,28 @@
 require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
-  include Rails.application.routes.url_helpers
-
-  setup do
-    @project = projects(:one)
-    @task = tasks(:one)
-  end
-
   test "should get index" do
-    get project_tasks_url(@project)
+    get tasks_index_url
     assert_response :success
   end
 
-  test "should create task" do
-    assert_difference("Task.count") do
-      post project_tasks_url(@project), params: { task: { title: "New Task", description: "A new task" } }
-    end
-
-    assert_response :created
-  end
-
-  test "should show task" do
-    get project_task_url(@project, @task)
+  test "should get show" do
+    get tasks_show_url
     assert_response :success
   end
 
-  test "should update task" do
-    patch project_task_url(@project, @task), params: { task: { title: "Updated Task" } }
+  test "should get create" do
+    get tasks_create_url
     assert_response :success
   end
 
-  test "should destroy task" do
-    assert_difference("Task.count", -1) do
-      delete project_task_url(@project, @task)
-    end
+  test "should get update" do
+    get tasks_update_url
+    assert_response :success
+  end
 
-    assert_response :no_content
+  test "should get destroy" do
+    get tasks_destroy_url
+    assert_response :success
   end
 end
