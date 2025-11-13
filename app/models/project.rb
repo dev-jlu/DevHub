@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
   # --- ASSOCIATIONS (Active Record) ---
   # Tasks
-  has_many :tasks, dependent: :destroy, counter_cache: true
+  has_many :tasks, dependent: :destroy
 end

@@ -5,13 +5,9 @@ one:
   description: MyText
   status: MyString
   project: one
-  assignee: one
-  assignee_type: Assignee
 
 two:
   title: MyString
   description: MyText
   status: MyString
   project: two
-  assignee: two
-  assignee_type: Assignee
