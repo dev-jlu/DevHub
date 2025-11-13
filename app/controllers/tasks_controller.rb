@@ -26,11 +26,20 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /projects/:project_id/tasks/:id
   def update
-    if @task.update(task_params)
-      render json: @task
-    else
+    update_params = task_params.except(:status)
+    if update_params.present? && !@task.update(update_params)
       render json: @task.errors, status: :unprocessable_entity
     end
+
+    new_task_status = task_params[:status]
+    if new_task_status.present? && new_task_status != @task.status
+      task_status_updater = TaskStatusUpdater.new(@task, new_task_status)
+      unless task_status_updater.call
+        render json: @task.errors, status: :unprocessable_entity
+      end
+    end
+
+    render json: @task
   end
 
   # DELETE /projects/:project_id/tasks/:id

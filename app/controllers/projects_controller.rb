@@ -1,4 +1,4 @@
-class ProjectsController < ApplicnoationController
+class ProjectsController < ApplicationController
   # Callback before show, update and destroy to get project by id
   before_action :set_project, only: [ :show, :update, :destroy ]
 
